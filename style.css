@@ -1,0 +1,503 @@
+body.home {
+  margin: 0px;
+}
+
+.background {
+  width: 100%;
+  height: 100vh;
+  background-image: url("resources/Background.jpg");
+  background-size: cover;
+  position: relative;
+}
+
+.boy {
+  height: 280px;
+  margin-top: 495px;
+  position: absolute;
+}
+
+.audio-controls {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(125, 170, 182, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.audio-controls button,
+.audio-controls input {
+  margin-bottom: 5px;
+}
+
+.audio-controls label {
+  margin-right: 5px;
+}
+
+/* Common button style for Play Again and Main Menu */
+button {
+  font-size: 16px; /* Set a consistent font size */
+  padding: 10px 20px; /* Ensure both buttons are the same size */
+  background-color: #4caf50; /* Green background color */
+  color: white; /* White text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Play Again Button */
+#playAgainBtn {
+  display: none; /* Hide by default */
+}
+
+/* Main Menu Button */
+#mainMenuBtn {
+  display: none; /* Hide by default */
+  position: absolute; /* Position it on the right */
+  right: 45px; /* 10px from the right edge */
+  bottom: 480px; /* Adjust position as needed */
+  width: 120px; /* Set a fixed width for the Main Menu button */
+  padding: 10px 20px; /* Adjust padding to make it short but balanced */
+  font-size: 14px; /* Slightly smaller font size for the Main Menu button */
+}
+
+/* Hover effect for both buttons */
+button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* Style for the small image container */
+.small-image-container {
+  position: absolute;
+  top: 30%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for proper centering */
+  z-index: 10; /* Ensures it's above other elements */
+}
+
+/* Style for the small image itself */
+.small-image {
+  width: 600px; /* Adjust size */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/*login signup*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("resources/login2.jpg"); /* Path to your background image */
+  background-size: cover;
+  background-position: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  background-color: rgba(69, 55, 28, 0.8); /* Semi-transparent background */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #111010;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #d5df46;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #ccd4db;
+}
+
+p {
+  text-align: center;
+  margin-top: 15px;
+}
+
+a {
+  color: #fdfeff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h3 {
+  text-align: center;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Basic reset and background */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a1a1a;
+  color: #141313;
+  font-family: Arial, sans-serif;
+}
+
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Game Loading Page */
+body.loading-screen {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("resources/login2.jpg"); /* Replace with your background image path */
+  background-size: cover; /* Ensures the image covers the entire screen */
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Container for Loading Bar and Text */
+.loading-container {
+  width: 80%;
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+}
+
+/* Loading Bar Styling */
+.loading-bar {
+  width: 100%;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark transparent background */
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+/* Progress Bar Styling */
+.progress-bar {
+  height: 100%;
+  width: 0%; /* Start with no progress */
+  background-color: #4caf50; /* Green color for progress */
+  transition: width 0.3s ease;
+}
+
+/* Loading Text Styling */
+.loading-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+  margin-top: 20px;
+}
+
+/* Progress bar styling */
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: #4caf50;
+  transition: width 0.3s ease;
+}
+
+/* Loading text */
+.loading-text {
+  font-size: 38px;
+}
+
+/*Leader Board*/
+body.leaderboard {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  background-image: url("resources/login2.jpg");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container2 {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  background-color: #d9e531;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #898c8a;
+}
+
+h3 {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ccc;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background-color: #f8f9fa;
+}
+
+/*level*/
+
+/* General Styles */
+body.level {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #dfd5d2;
+}
+
+/* Container styling */
+.container3 {
+  text-align: center;
+  color: #333;
+}
+
+/* Title styling */
+h1 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+}
+
+/* Banana selection styling */
+.banana-selection {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Reduce gap between images */
+}
+
+.banana {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.banana-image {
+  width: 380px; /* Increase size of banana image */
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.banana:hover .banana-image {
+  transform: scale(1.1);
+  border: 4px solid #f9844a; /* Thick outline on hover */
+}
+
+/* Instruction Box */
+.instruction-box {
+  width: 200px; /* Match size with the banana */
+  background-color: #fff;
+  border: 3px solid #f9844a; /* Visible thick outline */
+  padding: 10px;
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none; /* Hidden by default */
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.banana:hover .instruction-box {
+  display: block; /* Show instructions on hover */
+}
+
+/* Permanent White Box */
+
+.start-game-btn {
+  background-color: #f9844a;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.start-game-btn:hover {
+  background-color: #f56433;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.game-container {
+  margin-left: 35%;
+
+  text-align: center;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 450px;
+}
+
+.status {
+  margin-bottom: 20px;
+}
+
+.question-container img {
+  max-width: 100%;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#answerInput {
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  width: 80%;
+  text-align: center;
+}
+
+#submitAnswer {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#submitAnswer:hover {
+  background-color: #218838;
+}
+
+#feedback {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Play game*/
+
+body.playgame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("resources/login2.jpg"); /* Path to your background image */
+  background-size: cover;
+  background-position: center;
+}

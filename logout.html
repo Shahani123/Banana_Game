@@ -1,0 +1,11 @@
+<button onclick="logout()">Logout</button>
+
+<script>
+  function logout() {
+    // Delete the isLoggedIn cookie by setting an expired date
+    document.cookie = "isLoggedIn=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    
+    // Redirect to the login page
+    window.location.href = "login.html";
+  }
+</script>

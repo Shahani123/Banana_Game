@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Banana Hunt</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+// Load question from API
+function loadQuestion() {
+  const apiURL =
+    "https://www.sanfoh.com/uob/banana/data/tad7dd73ee0e4fe1034a83f05f2n123.png"; // Replace with your API URL
+  fetch(apiURL)
+    .then((response) => response.json())
+    .then((data) => {
+      // Set question image and solution
+      document.getElementById("questionImage").src = data.question;
+      solution = data.solution;
+    })
+    .catch((error) => {
+      console.error("Error fetching question from API:", error);
+    });
+}
+</script>
+<body class="body" onload="idleAnimationStart();"> 
+    <div class="background">
+        <img src="resources/Idle (1).png" class="boy" id="boy" />
+    </div>
+
+    <div>
+        
+    </div>
+    
+    </body> onload="loadQuestion()">
+        
+
+        <div class="game-container">
+            <!-- Level and Score -->
+            <div class="status">
+                <p>Level: <span id="level">1</span></p>
+                <p>Score: <span id="score">0</span></p>
+            </div>
+    
+            <!-- Question Image -->
+            <div class="question-container">
+                <img id="questionImage" src="" alt="Loading question..." />
+            </div>
+    
+            <!-- Answer Input and Submit Button -->
+            <div class="input-section">
+                <input type="number" id="answerInput" placeholder="Enter the missing digit" />
+                <button id="submitAnswer" onclick="checkAnswer()">Submit</button>
+            </div>
+    
+            <!-- Feedback -->
+            <p id="feedback"></p>
+        </div>
+
+
+    <script src="script.js"></script>
+    </body>
+
+</html>
+

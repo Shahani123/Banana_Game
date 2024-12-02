@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banana Hunt</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="home" onload="idleAnimationStart();">
+    <div class="background">
+      <!-- Animated Boy -->
+      <img src="resources/Idle (1).png" class="boy" id="boy" />
+
+      <!-- Game Container -->
+      <div class="game-container">
+        <!-- Status Information -->
+        <div class="status">
+          <p>Level: <span id="level">1</span></p>
+          <p>Score: <span id="score">0</span></p>
+          <p>Timer: <span id="timer">60s</span></p>
+          <p>Lives: <span id="bananaLives">3</span></p>
+        </div>
+
+        <!-- Question Section -->
+        <div class="question-container">
+          <img id="questionImage" src="" alt="Loading question..." />
+        </div>
+
+        <!-- Answer Input and Button -->
+        <div class="input-section">
+          <input
+            type="number"
+            id="answerInput"
+            placeholder="Enter the missing digit"
+          />
+          <button id="submitAnswer" onclick="checkAnswer()">Submit</button>
+        </div>
+
+        <!-- Feedback Section -->
+        <p id="feedback"></p>
+        <!-- Play Again Button -->
+        <button id="playAgainBtn" style="display: none" onclick="restartGame()">
+          Play Again
+        </button>
+      </div>
+
+      <!-- Main Menu Button -->
+      <button id="mainMenuBtn" onclick="goToMainMenu()" style="display: none">
+        Main Menu
+      </button>
+
+      <!-- Audio Controls -->
+      <div class="audio-controls">
+        <button id="muteBtn" onclick="toggleMute()">Mute</button>
+        <button id="unmuteBtn" onclick="toggleUnmute()">Unmute</button>
+        <label for="volumeSlider">Volume:</label>
+        <input
+          type="range"
+          id="volumeSlider"
+          min="0"
+          max="1"
+          step="0.1"
+          onchange="adjustVolume(this.value)"
+        />
+      </div>
+
+      <!-- Background Music -->
+      <audio id="backgroundMusic" loop>
+        <source src="assets/audio/puzzle_game.mp3" type="audio/mp3" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>
