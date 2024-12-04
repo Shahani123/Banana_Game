@@ -20,9 +20,10 @@
           />
           <div class="instruction-box">
             <p>Easy: 60 seconds to solve simple math problems.</p>
-            <button class="start-game-btn" onclick="startLevel('easy')">
-              Start Easy
-            </button>
+            <!-- Redirect to index.html on click -->
+            <a href="game-level1.html"
+              ><button class="start-game-btn">Start Easy</button></a
+            >
           </div>
         </div>
 
@@ -35,9 +36,10 @@
           />
           <div class="instruction-box">
             <p>Medium: 45 seconds with intermediate challenges.</p>
-            <button class="start-game-btn" onclick="startLevel('medium')">
-              Start Medium
-            </button>
+            <!-- Redirect to index2.html on click -->
+            <a href="game-level2.html"
+              ><button class="start-game-btn">Start Medium</button></a
+            >
           </div>
         </div>
 
@@ -50,9 +52,10 @@
           />
           <div class="instruction-box">
             <p>Hard: 30 seconds with difficult questions.</p>
-            <button class="start-game-btn" onclick="startLevel('hard')">
-              Start Hard
-            </button>
+            <!-- Redirect to index3.html on click -->
+            <a href="game-level3.html"
+              ><button class="start-game-btn">Start Hard</button></a
+            >
           </div>
         </div>
       </div>
@@ -65,14 +68,6 @@
         </p>
       </div>
     </div>
-
-    <script>
-      // Function to start the game with the selected level
-      function startLevel(level) {
-        // Redirect to the loading page with the selected level
-        window.location.href = `game-loading.html?level=${level}`;
-      }
-    </script>
 
     <script src="script.js"></script>
     <script src="timer-script.js"></script>

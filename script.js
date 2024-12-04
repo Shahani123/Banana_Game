@@ -27,7 +27,6 @@ function updateLives() {
   bananaLives.textContent = "🍌".repeat(lives);
 }
 
-
 // Function to end the game
 function endGame() {
   document.getElementById(
@@ -96,6 +95,7 @@ function loadQuestion() {
     .then((data) => {
       document.getElementById("questionImage").src = data.question;
       solution = data.solution;
+      console.log("Solution", solution);
     })
     .catch((error) => {
       console.error("Error fetching question from API:", error);
@@ -103,7 +103,9 @@ function loadQuestion() {
 }
 
 // Function to check the user's answer
-function checkAnswer() {
+function checkAnswer(level) {
+  console.log("level", level);
+
   const userAnswer = parseInt(document.getElementById("answerInput").value);
 
   if (userAnswer === solution) {
@@ -123,7 +125,7 @@ function checkAnswer() {
       return; // Stop further actions when the game ends
     }
   }
-
+  updateMarks();
   loadQuestion(); // Load a new question regardless of the answer
 }
 
@@ -174,8 +176,6 @@ function restartGame() {
 function goToMainMenu() {
   window.location.href = "play-game.html"; // Redirect to the play-game.html page
 }
-
-
 
 // Event listeners for difficulty buttons
 document.getElementById("startEasy").addEventListener("click", function () {
@@ -230,3 +230,116 @@ moveButton.addEventListener("click", () => {
   // Focus on the moved square
   gameSquare.scrollIntoView({ behavior: "smooth", block: "center" });
 });
+
+//****************************************************************** */
+
+let countdown; // Declare the countdown variable globally
+let isGameOver = false; // Flag to check if the game is over
+
+document.addEventListener("DOMContentLoaded", function () {
+  let timeLeft = 60; // Set the starting timer value
+  const timerElement = document.getElementById("timer");
+
+  // Only start the timer if the game is not over
+  if (!isGameOver) {
+    startTimer(timeLeft, timerElement);
+  }
+});
+
+// Function to start the countdown
+function startTimer(timeLeft, timerElement) {
+  // Display the initial timer value
+  timerElement.textContent = `${timeLeft}s`;
+
+  countdown = setInterval(() => {
+    if (isGameOver) {
+      clearInterval(countdown); // Ensure the timer is stopped if the game is over
+      return;
+    }
+
+    timeLeft--; // Decrement the time left
+    timerElement.textContent = `${timeLeft}s`; // Update the timer display
+
+    // If time runs out, stop the timer and end the game
+    if (timeLeft <= 0) {
+      clearInterval(countdown); // Stop the timer
+      alert("Game Over! Time's up!");
+      gameOver(); // Call game over function
+    }
+  }, 1000); // Update every second
+}
+
+// Function to handle what happens when the game is over
+function gameOver() {
+  isGameOver = true; // Set the game over flag to true
+
+  // Stop the countdown when the game ends
+  clearInterval(countdown);
+
+  // Hide the timer display
+  document.getElementById("timer").style.display = "none";
+
+  // Show Play Again and Main Menu buttons
+  document.getElementById("playAgainBtn").style.display = "block";
+  document.getElementById("mainMenuBtn").style.display = "block";
+
+  // Additional game-over logic (reset scores, etc.) can be placed here
+}
+
+function updateMarks() {
+  console.log("Update marks");
+
+  // Function to get a cookie by name
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+
+  const userName = getCookie("username"); // Assuming the cookie name is 'username'
+  if (!userName) {
+    console.error("Username not found in cookies");
+    return;
+  }
+  console.log("username", userName);
+
+  var xhr = new XMLHttpRequest();
+  var updateMarksUrl = "update_score.php";
+  var data = "userName=" + encodeURIComponent(userName) + "&newMarks=" + score;
+
+  xhr.open("POST", updateMarksUrl, true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      console.log("Marks updated successfully");
+    }
+  };
+
+  xhr.send(data);
+}
+
+function submitScore(playerName, score) {
+  fetch("update_score.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: `player_name=${encodeURIComponent(
+      playerName
+    )}&score=${encodeURIComponent(score)}`,
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      console.log(data); // Debug response
+      if (data.includes("successfully")) {
+        alert("Score submitted!");
+        window.location.reload(); // Reload leaderboard
+      } else {
+        alert("Failed to update score: " + data);
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
