@@ -8,15 +8,15 @@ body {
   height: 100%;
   width: 100%;
   min-height: 100vh;
-  background: hsla(0, 100%, 41%, 1);
+  background: rgb(217, 244, 10);
   background: linear-gradient(
     0deg,
-    hsla(0, 100%, 41%, 1) 0%,
+    rgb(212, 244, 6) 0%,
     hsla(26, 90%, 62%, 1) 71%
   );
   background: -moz-linear-gradient(
     0deg,
-    hsla(0, 100%, 41%, 1) 0%,
+    rgb(241, 241, 6) 0%,
     hsla(26, 90%, 62%, 1) 71%
   );
   background: -webkit-linear-gradient(
@@ -151,7 +151,7 @@ td {
   width: 42rem;
   height: 5.5rem;
   top: -0.5rem;
-  background-color: #5c5be5;
+  background-color: #3c3ccd;
   position: absolute;
   left: -1rem;
   -webkit-box-shadow: 0px 15px 11px -6px #7a7a7d;

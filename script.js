@@ -69,7 +69,7 @@ function adjustVolume(value) {
 
 // Idle animation for the character
 function idleAnimation() {
-  idleImageNumber = (idleImageNumber % 10) + 1; // Cycle through images 1-10
+  idleImageNumber = (idleImageNumber % 3) + 1; // Cycle through images 1-10
   boy.src = `resources/idle (${idleImageNumber}).png`;
 }
 
