@@ -1,46 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Level Selection</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="level">
-  <div class="container3">
-    <h1>Select Your Level</h1>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Level Selection</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="level">
+    <div id="game-container" class="container3">
+      <h1>Select Your Level</h1>
 
-    <div class="banana-selection">
-      <!-- Easy Level Banana -->
-      <div class="banana">
-        
-        <img src="resources/banana1.png" class="banana-image" alt="Easy Level">
-        <div class="instruction-box">
-          <p>Easy: 60 seconds to solve simple math problems.</p>
-          <button class="start-game-btn">Start Easy</button>
+      <div class="banana-selection">
+        <!-- Easy Level Banana -->
+        <div class="banana">
+          <img
+            src="resources/banana1.png"
+            class="banana-image"
+            alt="Easy Level"
+          />
+          <div class="instruction-box">
+            <p>Easy: 60 seconds to solve simple math problems.</p>
+            <button class="start-game-btn" onclick="startLevel('easy')">
+              Start Easy
+            </button>
+          </div>
+        </div>
+
+        <!-- Medium Level Banana -->
+        <div class="banana">
+          <img
+            src="resources/banana2.png"
+            class="banana-image"
+            alt="Medium Level"
+          />
+          <div class="instruction-box">
+            <p>Medium: 45 seconds with intermediate challenges.</p>
+            <button class="start-game-btn" onclick="startLevel('medium')">
+              Start Medium
+            </button>
+          </div>
+        </div>
+
+        <!-- Hard Level Banana -->
+        <div class="banana">
+          <img
+            src="resources/banana3.png"
+            class="banana-image"
+            alt="Hard Level"
+          />
+          <div class="instruction-box">
+            <p>Hard: 30 seconds with difficult questions.</p>
+            <button class="start-game-btn" onclick="startLevel('hard')">
+              Start Hard
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Medium Level Banana -->
-      <div class="banana">
-        <img src="resources/banana2.png" class="banana-image" alt="Medium Level">
-        <div class="instruction-box">
-          <p>Medium: 45 seconds with intermediate challenges.</p>
-          <button class="start-game-btn">Start Medium</button>
-        </div>
-      </div>
-
-      <!-- Hard Level Banana -->
-      <div class="banana">
-        <img src="resources/banana3.png" class="banana-image" alt="Hard Level">
-        <div class="instruction-box">
-          <p>Hard: 30 seconds with difficult questions.</p>
-          <button class="start-game-btn">Start Hard</button>
-        </div>
+      <!-- Permanent Instructions Box -->
+      <div class="instructions-container">
+        <p>
+          Choose a difficulty level and click "Start" to begin the game. The
+          timer will start once you begin solving the questions.
+        </p>
       </div>
     </div>
 
-    <!-- Permanent Instructions Box -->
-    <div class="instructions-container">
-      <p>
+    <script>
+      // Function to start the game with the selected level
+      function startLevel(level) {
+        // Redirect to the loading page with the selected level
+        window.location.href = `game-loading.html?level=${level}`;
+      }
+    </script>
+
+    <script src="script.js"></script>
+    <script src="timer-script.js"></script>
+  </body>
+</html>

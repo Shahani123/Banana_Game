@@ -12,14 +12,16 @@
       <!-- Animated Boy -->
       <img src="resources/Idle (1).png" class="boy" id="boy" />
 
+      <!-- Corrected timer element -->
+
       <!-- Game Container -->
       <div class="game-container">
         <!-- Status Information -->
         <div class="status">
           <p>Level: <span id="level">1</span></p>
           <p>Score: <span id="score">0</span></p>
-          <p>Timer: <span id="timer">60s</span></p>
-          <p>Lives: <span id="bananaLives">3</span></p>
+          <p>Lives: <span id="bananaLives">🍌🍌🍌</span></p>
+          <p>Timer: <span id="timer">60</span></p>
         </div>
 
         <!-- Question Section -->
@@ -39,7 +41,8 @@
 
         <!-- Feedback Section -->
         <p id="feedback"></p>
-        <!-- Play Again Button -->
+
+        <!-- Play Again Button (Initially Hidden) -->
         <button id="playAgainBtn" style="display: none" onclick="restartGame()">
           Play Again
         </button>
@@ -72,7 +75,8 @@
       </audio>
     </div>
 
-    <!-- JavaScript -->
+    <!-- Link to External JavaScript -->
     <script src="script.js"></script>
+    <script src="timer-script.js"></script>
   </body>
 </html>

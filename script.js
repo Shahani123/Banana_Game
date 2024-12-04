@@ -4,14 +4,20 @@ const backgroundMusic = document.getElementById("backgroundMusic");
 const bananaLives = document.getElementById("bananaLives");
 const progressBar = document.getElementById("progress-bar");
 const loadingText = document.getElementById("loading-text");
+const banana = document.getElementById("banana");
+const button = document.getElementById("myButton"); // Replace with the actual button id
+const gameSquare = document.getElementById("gameSquare"); // The moving square
+const moveButton = document.getElementById("moveButton"); // Button that triggers the square movement
 
 let idleImageNumber = 0;
 let solution;
-let timer = 60;
+let timer = 60; // Default starting time (can be updated later based on difficulty)
 let lives = 3;
 let currentLevel = 1;
 let score = 0;
 let progress = 0;
+let cursorOnBanana = false;
+let buttonHideTimeout;
 
 // Set initial volume for background music
 backgroundMusic.volume = 0.5;
@@ -21,18 +27,6 @@ function updateLives() {
   bananaLives.textContent = "🍌".repeat(lives);
 }
 
-// Function to start the timer
-function startTimer() {
-  const timerInterval = setInterval(() => {
-    timer--;
-    document.getElementById("timer").textContent = `${timer}s`;
-
-    if (timer <= 0 || lives <= 0) {
-      clearInterval(timerInterval);
-      endGame();
-    }
-  }, 1000);
-}
 
 // Function to end the game
 function endGame() {
@@ -113,23 +107,31 @@ function checkAnswer() {
   const userAnswer = parseInt(document.getElementById("answerInput").value);
 
   if (userAnswer === solution) {
-    document.getElementById("feedback").textContent = "Correct!";
-    document.getElementById("feedback").style.color = "green";
+    updateFeedback("Correct!", "green");
     score += 10;
     currentLevel++;
     updateStatus();
-    playCorrectAnswerSound(); // Play sound for correct answer
-    loadQuestion();
+    playSound("correct_answer");
   } else {
-    document.getElementById("feedback").textContent = "Incorrect!";
-    document.getElementById("feedback").style.color = "red";
+    updateFeedback("Incorrect!", "red");
     lives--;
     updateLives();
-    playWrongAnswerSound(); // Play sound for wrong answer
+    playSound("wrong_answer");
+
     if (lives <= 0) {
       endGame();
+      return; // Stop further actions when the game ends
     }
   }
+
+  loadQuestion(); // Load a new question regardless of the answer
+}
+
+// Function to update feedback text and color
+function updateFeedback(message, color) {
+  const feedbackElement = document.getElementById("feedback");
+  feedbackElement.textContent = message;
+  feedbackElement.style.color = color;
 }
 
 // Update level and score on the UI
@@ -138,22 +140,15 @@ function updateStatus() {
   document.getElementById("score").textContent = score;
 }
 
-// Function to play correct answer sound
-function playCorrectAnswerSound() {
-  const correctAnswerSound = new Audio("assets/audio/correct_answer.mp3");
-  correctAnswerSound.play();
-}
-
-// Function to play wrong answer sound
-function playWrongAnswerSound() {
-  const wrongAnswerSound = new Audio("assets/audio/wrong_answer.mp3");
-  wrongAnswerSound.play();
+// Function to play sound
+function playSound(sound) {
+  const audio = new Audio(`assets/audio/${sound}.mp3`);
+  audio.play();
 }
 
 // Restart the game
 function restartGame() {
   // Reset all variables
-  timer = 60;
   lives = 3;
   currentLevel = 1;
   score = 0;
@@ -161,7 +156,7 @@ function restartGame() {
 
   // Reset UI
   document.getElementById("timer").textContent = `${timer}s`;
-  document.getElementById("bananaLives").textContent = "🍌🍌🍌";
+  updateLives();
   document.getElementById("level").textContent = currentLevel;
   document.getElementById("score").textContent = score;
   document.getElementById("feedback").textContent = "";
@@ -172,7 +167,6 @@ function restartGame() {
   // Restart the game
   loadQuestion();
   startTimer();
-  updateLives();
   playMusic();
 }
 
@@ -180,3 +174,59 @@ function restartGame() {
 function goToMainMenu() {
   window.location.href = "play-game.html"; // Redirect to the play-game.html page
 }
+
+
+
+// Event listeners for difficulty buttons
+document.getElementById("startEasy").addEventListener("click", function () {
+  setTimerForLevel("easy");
+});
+document.getElementById("startMedium").addEventListener("click", function () {
+  setTimerForLevel("medium");
+});
+document.getElementById("startHard").addEventListener("click", function () {
+  setTimerForLevel("hard");
+});
+
+// Add the event listener for the playButton
+document.getElementById("playButton").addEventListener("click", function () {
+  window.location.href = "loading.html"; // Redirect to loading.html
+});
+
+// Function to hide the button when the cursor is on the banana
+function hideButtonOnBanana() {
+  button.style.display = "none"; // Hide the button
+
+  // Revert after 2 seconds if cursor remains on the banana
+  buttonHideTimeout = setTimeout(() => {
+    if (cursorOnBanana) {
+      button.style.display = "none"; // Keep the button hidden
+    }
+  }, 2000);
+}
+
+// Event listener for when the cursor enters the banana area
+banana.addEventListener("mouseover", () => {
+  cursorOnBanana = true;
+  hideButtonOnBanana(); // Start the hide button timeout
+});
+
+// Event listener for when the cursor leaves the banana area
+banana.addEventListener("mouseout", () => {
+  cursorOnBanana = false;
+  clearTimeout(buttonHideTimeout); // Clear timeout to avoid unintentional button hide
+  button.style.display = "inline"; // Show the button again when cursor leaves the banana
+});
+
+// Move the square to a new random position when the button is clicked
+moveButton.addEventListener("click", () => {
+  const randomX = Math.random() * (window.innerWidth - 100); // Random X position within the window
+  const randomY = Math.random() * (window.innerHeight - 100); // Random Y position within the window
+
+  gameSquare.style.position = "absolute"; // Ensure the position is absolute
+  gameSquare.style.left = `${randomX}px`;
+  gameSquare.style.top = `${randomY}px`;
+
+  // Focus on the moved square
+  gameSquare.scrollIntoView({ behavior: "smooth", block: "center" });
+});

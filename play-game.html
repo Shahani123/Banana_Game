@@ -12,11 +12,66 @@
       <h3>Welcome to Banana Hunt</h3>
       <button onclick="startGame()">Start Game</button>
       <button onclick="viewLeaderboard()">Leaderboard</button>
-      <button onclick="openSettings()">Settings</button>
       <button onclick="logout()">Logout</button>
     </div>
 
     <script src="script.js"></script>
     <!-- External JS for game logic -->
+    <script>
+      // Function to check if the user is logged in using cookies
+      function checkLogin() {
+        const cookies = document.cookie.split("; ");
+        let loggedIn = false;
+        let username = "";
+
+        // Loop through cookies to check if the user is logged in
+        cookies.forEach((cookie) => {
+          const [key, value] = cookie.split("=");
+          if (key === "isLoggedIn" && value === "true") {
+            loggedIn = true;
+          }
+          if (key === "username") {
+            username = value;
+          }
+        });
+
+        // If logged in, show the username, otherwise redirect to login page
+        if (loggedIn) {
+          document.querySelector(
+            ".game-menu h3"
+          ).textContent = `Welcome, ${username}!`;
+        } else {
+          // Redirect to login if not logged in
+          window.location.href = "login.html";
+        }
+      }
+
+      // Function to start the game
+      function startGame() {
+        // Redirect to level selection page
+        window.location.href = "level.html"; // Redirects to level selection page (update with actual file name if necessary)
+      }
+
+      // Function to view leaderboard
+      function viewLeaderboard() {
+        // Redirect to leaderboard page
+        window.location.href = "leaderboard.html"; // Redirects to the leaderboard page (update with actual file name if necessary)
+      }
+
+      // Function to logout
+      function logout() {
+        // Delete the isLoggedIn cookie and username cookie to log out the user
+        document.cookie =
+          "isLoggedIn=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        document.cookie =
+          "username=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+
+        // Redirect to the login page after logout
+        window.location.href = "login.html"; // Redirect to login page after logout
+      }
+
+      // Call the checkLogin function when the page loads
+      window.onload = checkLogin;
+    </script>
   </body>
 </html>
